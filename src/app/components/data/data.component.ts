@@ -44,6 +44,7 @@ export class DataComponent implements OnInit {
   constructor() { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
