@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataComponent } from './components/data/data.component';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -27,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
     MainNavComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

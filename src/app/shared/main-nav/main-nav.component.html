@@ -17,7 +17,9 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+        matTooltip="Despliega el menú lateral"
+        matTooltipPosition="right">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Prueba Front-end</span>
