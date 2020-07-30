@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+.card-container-right{
+  display: inline;
+  float: right;
+  padding-top: 10px;
+}
+
+.card-container-left{
+  display: inline;
+  padding-top: 10px;
+}
+

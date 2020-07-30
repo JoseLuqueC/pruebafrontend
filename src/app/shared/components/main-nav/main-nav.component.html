@@ -24,7 +24,11 @@
       </button>
       <span>Prueba Front-end</span>
       <span class="spacer"></span>
-      <mat-icon aria-label="Side nav toggle icon">input</mat-icon>
+
+      <a *ngIf="authSvc.userData | async;" (click)="onLogout()">
+        <mat-icon aria-label="Side nav toggle icon">input</mat-icon>
+      </a>
+
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
