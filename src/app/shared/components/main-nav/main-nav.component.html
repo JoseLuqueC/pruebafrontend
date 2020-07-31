@@ -25,7 +25,7 @@
       <span>Prueba Front-end</span>
       <span class="spacer"></span>
 
-      <a *ngIf="authSvc.userData | async;" (click)="onLogout()">
+      <a routerLink="/login" class="logout" *ngIf="authSvc.userData | async;" (click)="onLogout()">
         <mat-icon aria-label="Side nav toggle icon">input</mat-icon>
       </a>
 

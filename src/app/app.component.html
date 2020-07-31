@@ -1,7 +1,2 @@
-<app-main-nav *ngIf="authSvc.userData | async; else login" >
-  <router-outlet></router-outlet>
-</app-main-nav>
 
-<ng-template #login>
   <router-outlet></router-outlet>
-</ng-template>

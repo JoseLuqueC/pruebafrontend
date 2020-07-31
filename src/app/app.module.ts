@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { MainNavComponent } from './shared/components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 /*firebase*/
@@ -32,7 +31,6 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent,
     NewUserComponent,
     ModalComponent,
     EditUserComponent,
