@@ -3,12 +3,19 @@
   Usuarios existentes
 </div>
 <div class="container-btn-new">
-  <button mat-raised-button (click)="onNewUser()">
+  <button 
+    matTooltip="Crear nuevo usuario"
+    matTooltipPosition="before"
+    mat-raised-button (click)="onNewUser()">
     <mat-icon>note_add</mat-icon>&nbsp; Crear
   </button>
 </div>
-<mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Filtro</mat-label>
  <input 
+    matTooltip="Filtro de busqueda de toda la tabla"
+    matTooltipPosition="above"
+    placeholder="Ejemplo: jose"
     matInput
     (keyup)="applyFilter($event.target.value)"
     />
@@ -53,10 +60,16 @@
       <ng-container matColumnDef="accion">
         <th mat-header-cell *matHeaderCellDef> Acción </th>
         <td mat-cell *matCellDef="let userts$"> 
-          <button mat-icon-button color="accent" (click)="onEditUser(userts$)">
+          <button
+            matTooltip="Editar usuario"
+            matTooltipPosition="above"
+             mat-icon-button class="editButton" (click)="onEditUser(userts$)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="onDeleteUser(userts$)">
+          <button 
+            matTooltip="Eliminar usuario"
+            matTooltipPosition="above"
+            mat-icon-button color="warn" (click)="onDeleteUser(userts$)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

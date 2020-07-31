@@ -4,6 +4,8 @@ import { UserI } from '../../shared/models/user.interface';
 import { DataService } from '../../services/data.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../shared/services/auth.service';
+
 
 @Component({
   selector: 'app-new-user',
@@ -15,7 +17,9 @@ export class NewUserComponent implements OnInit {
   @Input() user: UserI;
 
 hide=true;
-  constructor(private dataSvc: DataService, public dialog: MatDialog) { }
+  constructor(private dataSvc: DataService,
+    private authSvc: AuthService,
+     public dialog: MatDialog) { }
   email = new FormControl('', [Validators.required, Validators.email]);
 
   public newUserForm = new FormGroup({
@@ -25,14 +29,12 @@ hide=true;
     rol: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.minLength(6)),
     email: this.email,
   })
 
   ngOnInit(): void {
   }
-
-  
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -45,6 +47,7 @@ hide=true;
   addNewUser(data:FormGroup){
     if(data.valid){
       this.dataSvc.saveUser(data.value);
+      this.authSvc.addNewUserLogin(data.value);
       Swal.fire({
         icon: 'success',
         title: 'Guardado con exito!',

@@ -4,6 +4,7 @@ import { UserI } from '../../shared/models/user.interface';
 import { DataService } from '../../services/data.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,7 +16,7 @@ export class EditUserComponent implements OnInit {
   
   @Input() user: UserI;
 
-  constructor(private dataSvc: DataService, public dialog: MatDialog) { }
+  constructor(private dataSvc: DataService,private authSvc: AuthService, public dialog: MatDialog) { }
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -27,7 +28,7 @@ export class EditUserComponent implements OnInit {
     rol: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.minLength(6)),
     email: this.email,
   })
 
@@ -46,6 +47,7 @@ export class EditUserComponent implements OnInit {
 
     if(data.valid){
       this.dataSvc.editUserById(data.value);
+      // this.authSvc.editUserLogin(data.value);
       Swal.fire({
         icon: 'success',
         title: 'Modificado con exito!',

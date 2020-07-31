@@ -76,7 +76,7 @@
     
     </section>
     <section>
-      <button type="submit" class="btn-l" mat-raised-button color="primary">Aceptar</button>
+      <button [disabled]="newUserForm.invalid" type="submit" class="btn-l" mat-raised-button color="primary">Aceptar</button>
   
       <button type="button" class="btn-r" mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
     </section>
