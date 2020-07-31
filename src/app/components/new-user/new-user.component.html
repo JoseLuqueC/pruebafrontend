@@ -1,0 +1,82 @@
+<form [formGroup]="newUserForm" (ngSubmit)="addNewUser(newUserForm)">
+
+    <section>
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Nombre
+        </mat-label>
+        <input matInput placeholder="Nombre" required>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Apellido
+        </mat-label>
+        <input matInput placeholder="Apellidos" required>
+      </mat-form-field>
+    
+    </section>
+    
+    <section>
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Identificación (C.C)
+        </mat-label>
+        <input matInput type="number" placeholder="C.C" required>
+      </mat-form-field>
+    
+
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Rol asociado</mat-label>
+        <mat-select>
+          <mat-option value="option">administrador</mat-option>
+          <mat-option value="option">conductor</mat-option>
+          <mat-option value="option">recolector</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    </section>
+
+    <section>
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select>
+          <mat-option value="option">activo</mat-option>
+          <mat-option value="option">inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    
+    </section>
+
+    <section>
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput type="number" required>
+      </mat-form-field>
+    
+
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Digita tu email</mat-label>
+        <input matInput placeholder="pat@example.com" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    
+    </section>
+    <section>
+      <button type="submit" class="btn-l" mat-raised-button color="primary">Aceptar</button>
+  
+     <button class="btn-r" mat-raised-button color="warn">Cancelar</button>
+    </section>
+</form>

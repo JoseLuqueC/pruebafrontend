@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserI } from '../shared/models/user.interface';
@@ -9,11 +9,14 @@ import { UserI } from '../shared/models/user.interface';
   providedIn: 'root'
 })
 export class DataService {
+  private usersCollection: AngularFirestoreCollection<UserI>;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) {
+    this.usersCollection = afs.collection<UserI>('users');
+   }
 
   public getAllUsers():Observable<UserI[]>{
-    return this.afs.collection('users')
+    return this.usersCollection
     .snapshotChanges()
     .pipe(
       map(actions =>
@@ -23,5 +26,13 @@ export class DataService {
           return {id, ...data};
         }))
     )
+  }
+
+  public deletePostById(user: UserI){
+    return this.usersCollection.doc(user.id).delete();
+  }
+
+  public editUserById(user:UserI){
+    return this.usersCollection.doc(user.id).update(user);
   }
 }
