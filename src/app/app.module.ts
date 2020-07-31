@@ -23,6 +23,8 @@ import { environment } from '../environments/environment';
 import { AdminModule } from './components/admin/admin.module';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
+import { EditUserModule } from './components/edit-user/edit-user.module';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 
@@ -33,6 +35,7 @@ import { ModalComponent } from './shared/components/modal/modal.component';
     MainNavComponent,
     NewUserComponent,
     ModalComponent,
+    EditUserComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,7 +49,8 @@ import { ModalComponent } from './shared/components/modal/modal.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AdminModule
+    AdminModule,
+    EditUserModule
   ],
   entryComponents: [AppComponent,
                     ModalComponent],

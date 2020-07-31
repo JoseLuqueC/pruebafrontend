@@ -40,7 +40,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onEditUser(user: UserI){
-    console.log('editUser', user);
     this.openDialog(user);
   }
 
@@ -92,10 +91,14 @@ export class TableComponent implements OnInit, AfterViewInit {
         message: user? 'Editar Usuario' : 'Nuevo Usuario',
         content: user
       }
-    }
+    };
     const dialogRef = this.dialog.open(ModalComponent, config);
     dialogRef.afterClosed().subscribe(result =>{
-      console.log()
+      // console.log("result",result)
     })
+  }
+
+  closeDialog(){
+    this.dialog.closeAll();
   }
 }
