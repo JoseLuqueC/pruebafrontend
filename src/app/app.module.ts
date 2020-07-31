@@ -23,7 +23,6 @@ import { environment } from '../environments/environment';
 import { AdminModule } from './components/admin/admin.module';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
-// import { TableComponent } from './shared/components/table/table.component';
 
 
 
