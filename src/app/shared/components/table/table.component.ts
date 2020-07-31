@@ -41,6 +41,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   onEditUser(user: UserI){
     console.log('editUser', user);
+    this.openDialog(user);
   }
 
   onDeleteUser(user: UserI){
@@ -56,11 +57,12 @@ export class TableComponent implements OnInit, AfterViewInit {
       if (result.value) {
 
         this.dataSvc.deletePostById(user).then(()=>{
-          Swal.fire(
-          'Eliminado!',
-          'El usuario a sido eliminado.',
-          'success'
-        )
+          Swal.fire({
+          icon: 'success',
+          title:'El usuario a sido eliminado.',
+          showConfirmButton: false,
+          timer: 1500
+        })
         }).catch((error)=>{
           Swal.fire(
             'Error!',
@@ -84,8 +86,14 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.openDialog();
   }
 
-  openDialog():void{
-    const dialogRef = this.dialog.open(ModalComponent);
+  openDialog(user?:UserI):void{
+    const config = {
+      data:{
+        message: user? 'Editar Usuario' : 'Nuevo Usuario',
+        content: user
+      }
+    }
+    const dialogRef = this.dialog.open(ModalComponent, config);
     dialogRef.afterClosed().subscribe(result =>{
       console.log()
     })

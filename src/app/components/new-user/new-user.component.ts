@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { UserI } from '../../shared/models/user.interface';
 import { DataService } from '../../services/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.css']
+  styleUrls: ['./new-user.component.scss']
 })
 export class NewUserComponent implements OnInit {
 hide=true;
   constructor(private dataSvc: DataService) { }
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   public newUserForm = new FormGroup({
-    nombre: new FormControl('', Validators.required),
-    apellido: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
     cc: new FormControl('', Validators.required),
     rol: new FormControl('', Validators.required),
-    estado: new FormControl('', Validators.required),
-    telefono: new FormControl('', Validators.required),
-    contraseña: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    email: this.email,
   })
 
   ngOnInit(): void {
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -35,8 +38,18 @@ hide=true;
     return this.email.hasError('email') ? 'No es un email valido' : '';
   }
 
-  addNewUser(form: FormGroup){
-    console.log("good");
+  addNewUser(data:FormGroup){
+    console.log("Data", data);
+    if(data.valid){
+      this.dataSvc.saveUser(data.value);
+      Swal.fire({
+        // position: 'top-end',
+        icon: 'success',
+        title: 'Guardado con exito!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 
 }

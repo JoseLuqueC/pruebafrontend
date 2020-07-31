@@ -35,4 +35,20 @@ export class DataService {
   public editUserById(user:UserI){
     return this.usersCollection.doc(user.id).update(user);
   }
+
+  public saveUser(user: UserI){
+    const userObj ={
+      name: user.name,
+      lastName: user.lastName,
+      cc: user.cc,
+      rol: user.rol,
+      state: user.state,
+      phone: user.phone,
+      password: user.password,
+      email: user.email
+    };
+
+    //todo editUser
+    this.usersCollection.add(userObj);
+  }
 }

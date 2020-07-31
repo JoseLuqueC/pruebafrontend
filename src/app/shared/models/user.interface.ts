@@ -4,7 +4,7 @@ export interface UserI{
   lastName?: string;
   cc?: number;
   rol?: string;
-  state?: boolean;
+  state?: string;
   phone?: number;
   email: string;
   password: string;
